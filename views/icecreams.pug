@@ -3,27 +3,10 @@ extends layout
 block content
 
   h1= title
-  -
-    let results = [
-      {
-        "icecream_flavour": "Butterscotch",
-        "icecream_quantity": "2lb",
-        "icecream_cost": 10
-      },
-      {
-        "icecream_flavour": "Vanilla",
-        "icecream_quantity": "4lb",
-        "icecream_cost": 20
-      },
-      {
-        "icecream_flavour": "Chocolate",
-        "icecream_quantity": "6lb",
-        "icecream_cost": 40
-      },                   
-    ]
+  - let result = results
   div(class= "container-fluid")
     div(class = "row")
-      each item,index in results
+      each item,index in result
         div(class= "col-sm-2" , onclick=`buy(${index})`) #{item.icecream_flavour}
         div(class= "col-sm-2", onclick=`buy(${index})`) #{item.icecream_quantity}
         div(class= "col-sm-2", onclick=`buy(${index})`) #{item.icecream_cost}
