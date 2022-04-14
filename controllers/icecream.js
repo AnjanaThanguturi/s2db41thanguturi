@@ -13,12 +13,18 @@ exports.icecream_list = async function (req, res) {
     }
 };
 // for a specific Icecream.
-exports.icecream_detail = function (req, res) {
-    res.send('NOT IMPLEMENTED: icecream detail: ' + req.params.id);
+exports.icecream_detail = async function (req, res) {
+    console.log("detail" + req.params.id)
+    try {
+        result = await icecream.findById(req.params.id)
+        res.send(result)
+    } catch (error) {
+        res.status(500)
+        res.send(`{"error": document for id ${req.params.id} not found`);
+    }
 };
 // Handle Icecream create on POST.
 exports.icecream_create_post = async function (req, res) {
-    //res.send('NOT IMPLEMENTED: Icecream create POST');
     console.log(req.body)
     let document = new icecream();
     // We are looking for a body, since POST does not have query parameters.
