@@ -48,8 +48,25 @@ exports.icecream_delete = function (req, res) {
     res.send('NOT IMPLEMENTED: Icecream delete DELETE ' + req.params.id);
 };
 // Handle Icecream update form on PUT.
-exports.icecream_update_put = function (req, res) {
-    res.send('NOT IMPLEMENTED: Icecream update PUT' + req.params.id);
+exports.icecream_update_put = async function (req, res) {
+    //res.send('NOT IMPLEMENTED: Icecream update PUT' + req.params.id);
+    console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+    try {
+        let toUpdate = await icecream.findById(req.params.id)
+        // Do updates of properties
+        if (req.body.icecream_flavour)
+            toUpdate.icecream_flavour = req.body.icecream_flavour;
+        if (req.body.icecream_quantity) toUpdate.cost = req.body.icecream_quantity;
+        if (req.body.size) toUpdate.icecream_cost = req.body.icecream_cost;
+        let result = await toUpdate.save();
+        console.log("Sucess " + result)
+        res.send(result)
+    } catch (err) {
+        res.status(500)
+        res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+    }
 };
 
 // VIEWS
