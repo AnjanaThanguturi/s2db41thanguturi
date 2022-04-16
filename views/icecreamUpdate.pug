@@ -1,0 +1,40 @@
+extends layout
+block content
+    h1= title
+
+    - let icecream_id = toShow._id
+    - let icecream_flavour = toShow.icecream_flavour
+    - let icecream_quantity = toShow.icecream_quantity
+    - let icecream_cost = toShow.icecream_cost
+     div.row(class='mb-2')
+        div.mr-1 ID is
+        div #{icecream_id}
+    - let actionid = "/resource/icecreams/" + icecream_id
+    form(id='IcecreamForm' action= actionid method="PUT")
+        div.form-group
+            label.icecreamAttr(for='icecream_flavour') Icecream type
+            input#icecream_flavour(type='text' name='icecream_flavour',value= icecream_flavour )
+        div.form-group
+            label.icecreamAttr(for='icecream_quantity') Icecream size
+            input#icecream_quantity(type='text' name='icecream_quantity', value= icecream_quantity)
+        div.form-group
+            label.icecreamAttr(for='icecream_cost') Icecream cost
+            input#icecream_cost(type='number' name='icecream_cost',value= icecream_cost)
+            input(type="submit")
+        script.
+            document.forms['IcecreamForm'].addEventListener('submit', (event) => {
+                event.preventDefault();
+                // TODO do something here to show user that form is being submitted
+                fetch(event.target.action, {
+                    method: 'PUT',
+                    body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+                }).then((resp) => {
+                    return resp.json(); // or resp.text() or whatever the server sends
+                }).then((body) => {
+                    alert("Save succeded")
+                    // TODO handle body
+                }).catch((error) => {
+                    // TODO handle error
+                    alert("Save failed " + error )
+                });
+            });
