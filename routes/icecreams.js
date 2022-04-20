@@ -14,6 +14,9 @@ router.get('/create', icecream_controllers.icecream_create_Page);
 /* GET create update page */
 router.get('/update', icecream_controllers.icecream_update_Page);
 
+/* GET delete delete page */
+router.get('/delete', icecream_controllers.icecream_delete_Page);
+
 
 
 module.exports = router;

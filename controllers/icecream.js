@@ -111,14 +111,30 @@ exports.icecream_create_Page = function (req, res) {
 
 // Handle building the view for updating a icecream.
 // query provides the id
-exports.icecream_update_Page = async function(req, res) {
-    console.log("update view for item "+req.query.id)
-    try{
-    let result = await icecream.findById(req.query.id)
-    res.render('icecreamUpdate', { title: 'Icecream Update', toShow: result });
+exports.icecream_update_Page = async function (req, res) {
+    console.log("update view for item " + req.query.id)
+    try {
+        let result = await icecream.findById(req.query.id)
+        res.render('icecreamUpdate', { title: 'Icecream Update', toShow: result });
     }
-    catch(err){
-    res.status(500)
-    res.send(`{'error': '${err}'}`);
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
+    }
+};
+
+// Handle a delete one view with id from query
+exports.icecream_delete_Page = async function (req, res) {
+    console.log("Delete view for id " + req.query.id)
+    try {
+        result = await icecream.findById(req.query.id)
+        res.render('icecreamDelete', {
+            title: 'Icecream Delete', toShow:
+                result
+        });
+    }
+    catch (err) {
+        res.status(500)
+        res.send(`{'error': '${err}'}`);
     }
 };
