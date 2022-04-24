@@ -60,7 +60,7 @@ ${JSON.stringify(req.body)}`)
         if (req.body.icecream_flavour)
             toUpdate.icecream_flavour = req.body.icecream_flavour;
         if (req.body.icecream_quantity) toUpdate.cost = req.body.icecream_quantity;
-        if (req.body.size) toUpdate.icecream_cost = req.body.icecream_cost;
+        if (req.body.icecream_cost) toUpdate.icecream_cost = req.body.icecream_cost;
         let result = await toUpdate.save();
         console.log("Sucess " + result)
         res.send(result)

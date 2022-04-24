@@ -2,17 +2,26 @@ extends layout
 
 block content
 
-  h1= title
-  p Welcome to Pug
-  button(type = "button", class = "btn btn-success", onClick = "moreClaps()") Press Me
-  div(id = "target") Clap for me
+  //- h1= title
+  //- p Welcome to Pug
+  //- button(type = "button", class = "btn btn-success", onClick = "moreClaps()") Press Me
+  //- div(id = "target") Clap for me
 
-    script.
-      var clap_count = 0;
-      function moreClaps(){
-        clap_count = clap_count + 2;
-        document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
-      }
+  //-   script.
+  //-     var clap_count = 0;
+  //-     function moreClaps(){
+  //-       clap_count = clap_count + 2;
+  //-       document.getElementById("target").innerHTML = 'Clap '+ clap_count +' times';
+  //-     }
 
-  - var icecreams= ['icecream_flavour','icecream_quantity','icecream_cost']
-  a(href='/icecreams') Click here to search for icecreams
+  //- - var icecreams= ['icecream_flavour','icecream_quantity','icecream_cost']
+  //- a(href='/icecreams') Click here to search for icecreams
+  if (!user)
+    a(href="/login") Login
+    br
+    a(href="/register") Register
+  if (user)
+    p You are currently logged in as #{user.username}
+    a(href="/icecreams") Take me to icecreams
+    br
+    a(href="/logout") Logout
