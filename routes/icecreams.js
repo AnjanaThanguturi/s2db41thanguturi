@@ -16,13 +16,13 @@ router.get('/', icecream_controllers.icecream_view_all_Page);
 router.get('/detail', icecream_controllers.icecream_view_one_Page);
 
 /* GET create icecream page */
-router.get('/create', icecream_controllers.icecream_create_Page);
+router.get('/create',secured, icecream_controllers.icecream_create_Page);
 
 /* GET create update page */
 router.get('/update', secured, icecream_controllers.icecream_update_Page);
 
 /* GET delete delete page */
-router.get('/delete', icecream_controllers.icecream_delete_Page);
+router.get('/delete',secured, icecream_controllers.icecream_delete_Page);
 
 
 
