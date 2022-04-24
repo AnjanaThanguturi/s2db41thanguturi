@@ -81,7 +81,7 @@ async function recreateDB() {
   });
 
   let instance3 = new Icecream(
-    { icecream_flavour: "Chocolate", icecream_quantity: '6lb', icecream_cost: 40 });
+    { icecream_flavour: "Chocolate", icecream_quantity: '6lb', icecream_cost: 30 });
   instance3.save(function (err, doc) {
     if (err) return console.error(err);
     console.log("Third object saved")
